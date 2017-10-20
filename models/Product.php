@@ -18,7 +18,7 @@ public static function tableName()
 
 public function getCategory(){
     // 1 продукт == 1 категория
-    return $this->hasOne(Category::className(),['id'=>'category_id'])
+    return $this->hasOne(Category::className(),['id'=>'category_id']);
 }
 
 }
