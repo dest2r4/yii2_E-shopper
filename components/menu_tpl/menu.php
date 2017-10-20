@@ -1,4 +1,4 @@
-<li><a href="">
+<li><a href="<?= \yii\helpers\Url::to(['category/view','id'=>$category['id']])?>">
         <?=$category['name']?>
     <?php  if(isset($category['childs'])):  ?>
         <span class="badge pull-right">

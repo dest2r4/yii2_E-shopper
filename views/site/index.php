@@ -76,7 +76,7 @@ $this->title = 'Main Page Resourse';
             <div class="col-sm-3">
                 <div class="left-sidebar">
                     <h2>Category</h2>
-                    <ul class="catalog">
+                    <ul class="catalog category-products" id="test1">
                         <?=\app\components\MenuWidget::widget(['tpl'=>'menu'])?>
                     </ul>
 
