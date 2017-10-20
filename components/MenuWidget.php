@@ -8,11 +8,18 @@
 
 namespace app\components;
 use yii\base\Widget;
+use app\models\Category;
 
 
 class MenuWidget extends Widget
 {
     public $tpl;
+    public $tree;
+    public $dataDb;
+    public $menuHtml;
+
+
+
 
     public function init()
     {
@@ -27,6 +34,54 @@ class MenuWidget extends Widget
 
     public function run()
     {
-        return $this->tpl;
+        $this->dataDb=Category::find()->indexBy('id')->asArray()->all();
+        #debug($this->dataDb);
+        $this->tree=$this->getTree();
+        $this->menuHtml=$this->getMenuHtml($this->tree);
+        #debug($this->tree);
+        return $this->menuHtml;
     }
+
+    # создание дерева с потомками
+    protected function getTree(){
+        $tree=[];
+        foreach ($this->dataDb as $id=>&$node)
+        {
+            if(!$node['parent_id'])$tree[$id]=&$node;
+            else $this->dataDb[$node['parent_id']]['childs'][$node['id']]=&$node;
+
+        }
+        return $tree;
+    }
+
+    # покдлючить шаблон и поместить в него данные
+    protected function callToTemplate ($category){
+        ob_start();
+        include __DIR__.'/menu_tpl/'.$this->tpl;
+        return ob_get_clean();
+        # буферизация без вывода
+    }
+
+    # получить код готового єлемента навбара сайта
+    protected function getMenuHtml ($tree){
+        $str='';
+        foreach ($tree as $category)
+        {
+            $str.=$this->callToTemplate($category);
+        }
+        return $str;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
