@@ -51,7 +51,12 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'category/<id:\d+>'=>'category/view'
+                # правиль для ЧПУ пагинации
+                'category/<id:\d+>/page/<page:\d+>'=>'category/view',
+                # правило для ЧПУ категории
+                'category/<id:\d+>'=>'category/view',
+
+
             ],
         ],
 

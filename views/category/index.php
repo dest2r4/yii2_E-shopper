@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'Category=>Index';
+
 ?>
 <section id="slider"><!--slider-->
     <div class="container">
