@@ -1,7 +1,7 @@
 <?php
 
 /* @var $this yii\web\View */
-
+use yii\helpers\Html;
 ?>
 <section id="advertisement">
     <div class="container">
@@ -62,7 +62,8 @@
                                     <div class="productinfo text-center">
                                         <img src="<?='/images/home/'.$product['img']  ?>" alt="" />
                                         <h2><?=$product['price'] ?></h2>
-                                        <p><?=$product['name'] ?></p>
+                                        <p><a href="<?=\yii\helpers\Url::to(['product/view','id'=>$product['id']])  ?>">
+                                            <?=$product['name'] ?></a></p>
                                         <a href="<?= 'category/'.$product['category_id'].'/'.$product['id']?>"
                                            class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart">
 
