@@ -56,6 +56,7 @@ $config = [
                 # правило для ЧПУ категории
                 'category/<id:\d+>'=>'category/view',
                 'product/<id:\d+>'=>'product/view',
+                'search'=>'category/search',
 
             ],
         ],
